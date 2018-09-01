@@ -8,5 +8,5 @@ build/
 
 .flutter-plugins
 
-/functions
+/functions/node_modules
 /exportToHTML
