@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "990553561020",
+    "firebase_url": "https://proyecto-robotica-35bed.firebaseio.com",
+    "project_id": "proyecto-robotica-35bed",
+    "storage_bucket": "proyecto-robotica-35bed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990553561020:android:abf87f8d45ebc681",
+        "android_client_info": {
+          "package_name": "com.example.piscis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "990553561020-ng3jvjg6mipf9ss0mq1vqqutcqjqqhml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJy6YRuXsrDsQ-rXk2G_Nnbaqp6zpEEG8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
