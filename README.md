@@ -1,6 +1,6 @@
-# piscis
+# Piscis Android
 
-A new Flutter project.
+Desarrollo de la MultiPlataforma de Monitoreo Piscis para la plataforma Android. Desarrollada con Flutter
 
 ## Getting Started
 
