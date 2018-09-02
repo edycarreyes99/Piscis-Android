@@ -1,9 +1,11 @@
-import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin'
-import * as sgMail from '@sendgrid/mail';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+const sgMail = require("@sendgrid/mail");
 admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
-const settings = {timestampsInSnapshots: true};
+const settings = { timestampsInSnapshots: true };
 const SENDGRID_API_KEY = functions.config().sendgrid.key;
 sgMail.setApiKey(SENDGRID_API_KEY);
 db.settings(settings);
@@ -11,33 +13,28 @@ exports.FirebaseToFirestoreHistorial = functions.database.ref('/Historial/{id}')
     const datos = data.val();
     return db.collection('Piscis').doc('Historial').collection('Sensores').doc(data.key).set(datos);
 });
-
-exports.FirebaseRealtimeDataToFirestore = functions.database.ref('Tiempo_Real').onUpdate(snapshot=>{
+exports.FirebaseRealtimeDataToFirestore = functions.database.ref('Tiempo_Real').onUpdate(snapshot => {
     const datos = snapshot.before.val();
     return db.collection('Piscis').doc('Tiempo_real').set(datos);
 });
-
-exports.onAddUser = functions.auth.user().onCreate(user=>{
+exports.onAddUser = functions.auth.user().onCreate(user => {
     const usuario = user;
     var userID = usuario.uid;
-
-
     const msg = {
         to: user.email,
         from: 'pisciswebserver@gmail.com',
         subject: 'Nuevo Usuario Agregado',
-
         //custom templates
         templateId: 'd-04044740f59841e9b5d23021c0afa709',
         substitutionWrappers: ['{{', '}}'],
-        substitutions:{
+        substitutions: {
             name: user.email
         }
     };
     return sgMail.send(msg);
 });
-
-exports.onDeleteUser = functions.auth.user().onDelete(user=>{
+exports.onDeleteUser = functions.auth.user().onDelete(user => {
     const usuario = user;
     var userID = usuario.uid;
 });
+//# sourceMappingURL=index.js.map
