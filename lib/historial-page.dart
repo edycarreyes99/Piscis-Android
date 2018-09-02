@@ -5,17 +5,20 @@ import 'data-table.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class HistorialPage extends StatefulWidget {
   HistorialPage({this.auth, this.onCerrarSesion});
   final BaseAuth auth;
   final VoidCallback onCerrarSesion;
+  final CollectionReference fs = Firestore.instance.collection('Piscis').document('Historial').collection('Sensores');
   @override
   _HistorialPageState createState() => _HistorialPageState();
 }
 
 class _HistorialPageState extends State<HistorialPage> {
-  Widget bodyData() => DataTable(
+  /*Widget bodyData() => DataTable(
         onSelectAll: (b) {},
         sortColumnIndex: 0,
         sortAscending: true,
@@ -43,7 +46,7 @@ class _HistorialPageState extends State<HistorialPage> {
                   DataCell(Text(name.lastName)),
                 ]))
             .toList(),
-      );
+      );*/
 
   @override
   Widget build(BuildContext context) {
@@ -138,25 +141,49 @@ class _HistorialPageState extends State<HistorialPage> {
                     ],
                   ),
                 ),
-                Container(
-                  child: bodyData(),
-                )
+                bodyData()
               ],
             )
           ],
-        ));
+        )
+    );
   }
 }
 
-class Datos {
-  int ano, dia, temperatura, humedad;
-  String mes, private_key_id;
+class bodyData extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new StreamBuilder<QuerySnapshot>(
+      stream: Firestore.instance.collection('Piscis/Historial/Sensores').snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (!snapshot.hasData) return const Text('Loading...');
+        final int messageCount = snapshot.data.documents.length;
+        return new ListView.builder(
+          itemCount: messageCount,
+          itemBuilder: (_, int index) {
+            final DocumentSnapshot document = snapshot.data.documents[index];
+            return new ListTile(
+              title: new Text(document['Temperatura']),
+              subtitle: new Text(document['Humedad']),
+            );
+          },
+        );
+      },
+    );
+  }
+}
 
-  Datos(this.ano, this.mes, this.dia, this.humedad, this.private_key_id,
-      this.temperatura);
+
+
+
+class Datos {
+  String mes,ano, dia, temperatura, humedad;
+
+  Datos({this.ano, this.mes, this.dia, this.humedad,this.temperatura});
 
   Datos.fromSnapshot(DataSnapshot snapshot);
 }
+
 
 class Name {
   String firstName;
