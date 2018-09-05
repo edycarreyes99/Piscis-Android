@@ -13,10 +13,6 @@ exports.FirebaseToFirestoreHistorial = functions.database.ref('/Historial/{id}')
     const datos = data.val();
     return db.collection('Piscis').doc('Historial').collection('Sensores').doc(data.key).set(datos);
 });
-exports.FirebaseRealtimeDataToFirestore = functions.database.ref('Tiempo_Real').onUpdate(snapshot => {
-    const datos = snapshot.before.val();
-    return db.collection('Piscis').doc('Tiempo_real').set(datos);
-});
 exports.onAddUser = functions.auth.user().onCreate(user => {
     const usuario = user;
     var userID = usuario.uid;
