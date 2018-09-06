@@ -11,31 +11,28 @@ class RootPage extends StatefulWidget {
   _RootPageState createState() => _RootPageState();
 }
 
-enum AuthState{
-  noIniciado,
-  iniciado
-}
+enum AuthState { noIniciado, iniciado }
 
 class _RootPageState extends State<RootPage> {
-
   AuthState _authState = AuthState.noIniciado;
 
   @override
   void initState() {
     super.initState();
-    widget.auth.currentUser().then((userid){
+    widget.auth.currentUser().then((userid) {
       setState(() {
         _authState = userid == null ? AuthState.noIniciado : AuthState.iniciado;
       });
     });
   }
 
-  void iniciado(){
+  void iniciado() {
     setState(() {
       _authState = AuthState.iniciado;
     });
   }
-  void noIniciado(){
+
+  void noIniciado() {
     setState(() {
       _authState = AuthState.noIniciado;
     });
@@ -43,12 +40,20 @@ class _RootPageState extends State<RootPage> {
 
   @override
   Widget build(BuildContext context) {
-    switch(_authState){
+    switch (_authState) {
       case AuthState.noIniciado:
-        return new LoginPage(auth: widget.auth, onIniciado: iniciado,);
+        return new LoginPage(
+          auth: widget.auth,
+          onIniciado: iniciado,
+        );
       case AuthState.iniciado:
-        return new HomePage(auth: widget.auth,onCerrarSesion: noIniciado,);
+        return new HomePage(
+          auth: widget.auth,
+          onCerrarSesion: noIniciado,
+        );
     }
-    return LoginPage(auth: widget.auth,);
+    return LoginPage(
+      auth: widget.auth,
+    );
   }
 }
