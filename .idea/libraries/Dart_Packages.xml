@@ -79,6 +79,13 @@
             </list>
           </value>
         </entry>
+        <entry key="fcharts">
+          <value>
+            <list>
+              <option value="E:/flutter/.pub-cache/hosted/pub.dartlang.org/fcharts-0.0.9/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="firebase_admob">
           <value>
             <list>
@@ -443,6 +450,7 @@
       <root url="file://E:/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-2.0.3/lib" />
       <root url="file://E:/flutter/.pub-cache/hosted/pub.dartlang.org/csslib-0.14.4/lib" />
       <root url="file://E:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-0.1.2/lib" />
+      <root url="file://E:/flutter/.pub-cache/hosted/pub.dartlang.org/fcharts-0.0.9/lib" />
       <root url="file://E:/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_admob-0.5.7/lib" />
       <root url="file://E:/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.5.18/lib" />
       <root url="file://E:/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.2.5/lib" />
