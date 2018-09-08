@@ -8,6 +8,7 @@ import 'profile-page.dart';
 import 'addUser-page.dart';
 import 'profile-page.dart';
 import 'list-list.dart';
+import 'chart.dart';
 
 class SideNav extends StatefulWidget {
   SideNav({this.auth, this.onCerrarSesion});
@@ -68,7 +69,7 @@ class _SideNavState extends State<SideNav> {
             trailing: new Icon(Icons.home),
           ),
           new ListTile(
-            onTap: () => print('Tiempo Real'),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>DocumentChart())),
             title: new Text('Tiempo Real'),
             trailing: new Icon(Icons.whatshot),
           ),

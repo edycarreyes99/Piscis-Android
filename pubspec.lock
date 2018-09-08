@@ -36,13 +36,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
+  charts_common:
+    dependency: transitive
+    description:
+      name: charts_common
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
+  charts_flutter:
+    dependency: "direct main"
+    description:
+      name: charts_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   cloud_firestore:
     dependency: "direct main"
     description:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.4"
+    version: "0.8.0"
   collection:
     dependency: transitive
     description:
@@ -78,13 +92,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2"
-  fcharts:
-    dependency: "direct main"
-    description:
-      name: fcharts
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.9"
   firebase_admob:
     dependency: "direct main"
     description:
@@ -98,7 +105,7 @@ packages:
       name: firebase_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.18"
+    version: "0.5.20"
   firebase_core:
     dependency: "direct main"
     description:
@@ -179,6 +186,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.2"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.15.7"
   io:
     dependency: transitive
     description:
