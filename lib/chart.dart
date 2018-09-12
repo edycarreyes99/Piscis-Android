@@ -5,7 +5,6 @@ import 'dart:async';
 import 'historial-page.dart';
 
 class DocumentChart extends StatefulWidget {
-  QuerySnapshot snapshot;
   final int ano;
   final String mes;
   final int dia;
@@ -13,41 +12,93 @@ class DocumentChart extends StatefulWidget {
       .collection('Piscis')
       .document('Historial')
       .collection('Sensores');
-  List<LinearSales> datos;
-  DocumentChart({this.snapshot, this.ano, this.mes, this.dia, this.datos});
+  DocumentChart({this.ano, this.mes, this.dia});
   @override
   _DocumentChartState createState() => _DocumentChartState();
 }
 
 class LinearSales {
-  final int year;
-  final int sales;
+  final int hora;
+  final int sensor;
 
-  LinearSales(this.year, this.sales);
+  LinearSales(this.hora, this.sensor);
 }
 
 List<LinearSales> _extraerTemperaturas(QuerySnapshot snapshot) {
-  int i = 0;
-  List<LinearSales> datos = snapshot.documents.map((DocumentSnapshot documento){
-    return new LinearSales(documento.data['PH'], documento.data['Temperatura']);
+  List<LinearSales> datos =
+      snapshot.documents.map((DocumentSnapshot documento) {
+    return  LinearSales(
+        documento.data['Hora'], documento.data['Temperatura']);
+  }).toList();
+  return datos;
+}
+
+List<LinearSales> _extraerHumedad(QuerySnapshot snapshot) {
+  List<LinearSales> datos =
+      snapshot.documents.map((DocumentSnapshot documento) {
+    return  LinearSales(documento.data['Hora'], documento.data['Humedad']);
+  }).toList();
+  return datos;
+}
+
+List<LinearSales> _extraerPH(QuerySnapshot snapshot) {
+  List<LinearSales> datos =
+      snapshot.documents.map((DocumentSnapshot documento) {
+    return  LinearSales(documento.data['Hora'], documento.data['PH']);
+  }).toList();
+  return datos;
+}
+
+List<LinearSales> _extraerOxigeno(QuerySnapshot snapshot) {
+  List<LinearSales> datos =
+  snapshot.documents.map((DocumentSnapshot documento) {
+    return  LinearSales(documento.data['Hora'], documento.data['Oxigeno']);
+  }).toList();
+  return datos;
+}
+
+List<LinearSales> _extraerViscosidad(QuerySnapshot snapshot) {
+  List<LinearSales> datos =
+  snapshot.documents.map((DocumentSnapshot documento) {
+    return  LinearSales(documento.data['Hora'], documento.data['Viscosidad']);
   }).toList();
   return datos;
 }
 
 _generarDatos(QuerySnapshot snapshot) {
-  List<LinearSales> temperatura = [
-    new LinearSales(0, 5),
-    new LinearSales(1, 25),
-    new LinearSales(2, 100),
-    new LinearSales(3, 75),
-  ].toList();
   var series = [
-    new Series(
+     Series(
         id: 'Temperatura',
         colorFn: (_, __) => MaterialPalette.red.shadeDefault,
-        domainFn: (LinearSales sales, _) => sales.year,
-        measureFn: (LinearSales sales, _) => sales.sales,
+        domainFn: (LinearSales sales, _) => sales.hora,
+        measureFn: (LinearSales sales, _) => sales.sensor,
         data: _extraerTemperaturas(snapshot)),
+     Series(
+        id: 'Humedad',
+        colorFn: (_, __) => MaterialPalette.blue.shadeDefault,
+        domainFn: (LinearSales sales, _) => sales.hora,
+        measureFn: (LinearSales sales, _) => sales.sensor,
+        data: _extraerHumedad(snapshot)),
+     Series(
+        id: 'PH',
+        colorFn: (_, __) => MaterialPalette.green.shadeDefault,
+        domainFn: (LinearSales sales, _) => sales.hora,
+        measureFn: (LinearSales sales, _) => sales.sensor,
+        data: _extraerPH(snapshot)),
+    Series(
+        id: 'Oxigeno',
+        colorFn: (_, __) => MaterialPalette.indigo.shadeDefault,
+        domainFn: (LinearSales sales, _) => sales.hora,
+        measureFn: (LinearSales sales, _) => sales.sensor,
+        data: _extraerOxigeno(snapshot)
+    ),
+     Series(
+         id: 'Viscosidad',
+         colorFn: (_, __) => MaterialPalette.gray.shadeDefault,
+         domainFn: (LinearSales sales, _) => sales.hora,
+         measureFn: (LinearSales sales, _) => sales.sensor,
+         data: _extraerViscosidad(snapshot)
+     ),
   ];
   return series;
 }
@@ -55,33 +106,24 @@ _generarDatos(QuerySnapshot snapshot) {
 class _DocumentChartState extends State<DocumentChart> {
   @override
   Widget build(BuildContext context) {
-    var query = this
-        .widget
-        .fs
-        .where('Año', isEqualTo: 2018)
-        .where('Mes', isEqualTo: 'Septiembre')
-        .where('Dia', isEqualTo: 4)
-        .snapshots()
-        .map((snapshot) {
-      return snapshot;
-    });
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Chart'),
+    return  Scaffold(
+        appBar:  AppBar(
+          title:  Text('Chart'),
           backgroundColor: Colors.teal,
         ),
-        body: new Center(
+        body:  Center(
           child: Padding(
-            padding: new EdgeInsets.all(32.0),
+            padding:  EdgeInsets.all(32.0),
             child: SizedBox(
                 height: 200.0,
                 child: StreamBuilder(
                     stream: this
                         .widget
                         .fs
-                        .where('Año', isEqualTo: 2018)
-                        .where('Mes', isEqualTo: 'Septiembre')
-                        .where('Dia', isEqualTo: 4)
+                        .where('Año', isEqualTo: this.widget.ano)
+                        .where('Mes', isEqualTo: this.widget.mes)
+                        .where('Dia', isEqualTo: this.widget.dia)
+                        .orderBy('Hora', descending: false)
                         .snapshots(),
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
