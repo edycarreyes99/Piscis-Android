@@ -7,7 +7,7 @@ import 'data-table.dart';
 import 'profile-page.dart';
 import 'addUser-page.dart';
 import 'profile-page.dart';
-import 'list-list.dart';
+import 'real-time.dart';
 import 'chart.dart';
 
 class SideNav extends StatefulWidget {
@@ -69,7 +69,7 @@ class _SideNavState extends State<SideNav> {
             trailing: new Icon(Icons.home),
           ),
           new ListTile(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>DocumentChart())),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>RealTimePage(auth: this.widget.auth,onCerrarSesion: this.widget.onCerrarSesion,))),
             title: new Text('Tiempo Real'),
             trailing: new Icon(Icons.whatshot),
           ),
