@@ -10,11 +10,18 @@ dependencies:
   cupertino_icons: ^0.1.2
   firebase_database: ^1.0.4
   firebase_core: any
+  firebase_auth:
+  google_sign_in:
+  cloud_firestore:
+  flutter_staggered_grid_view:
+  firebase_admob: ^0.5.2
+  charts_flutter: ^0.2.0
+  #firebase_analytics: ^0.2.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  firebase_auth: 0.5.18
+  #firebase_auth: 0.5.18
 
 
 # For information on the generic Dart part of this file, see the

@@ -11,10 +11,9 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
-
   final routes = <String, WidgetBuilder>{
-    LoginPage.tag: (context)=>LoginPage(),
-    HomePage.tag: (context)=>HomePage()
+    LoginPage.tag: (context) => LoginPage(),
+    HomePage.tag: (context) => HomePage()
   };
 
   // This widget is the root of your application.
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.grey,
         fontFamily: 'Nunito',
       ),
-      home:  SplashScreen(),
+      home: SplashScreen(),
       //RootPage(auth: new Auth()),
       routes: routes,
     );
