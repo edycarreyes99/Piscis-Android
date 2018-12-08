@@ -10,3 +10,4 @@ build/
 
 /functions/node_modules
 /exportToHTML
+.idea/workspace.xml
