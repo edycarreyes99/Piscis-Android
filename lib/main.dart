@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 import 'home_page.dart';
-import 'auth.dart';
-import 'root_page.dart';
 import 'splashscreen.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 
 void main() => runApp(new MyApp());
 

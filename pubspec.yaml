@@ -15,7 +15,7 @@ dependencies:
   cloud_firestore:
   flutter_staggered_grid_view:
   firebase_admob: ^0.5.2
-  charts_flutter: ^0.2.0
+  charts_flutter: 0.6.0
   #firebase_analytics: ^0.2.3
 
 dev_dependencies:
