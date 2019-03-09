@@ -85,8 +85,7 @@ class _SideNavState extends State<SideNav> {
             trailing: new Icon(Icons.timeline),
           ),
           new ListTile(
-            onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => DataTableDemo())),
+            onTap: () => {},
             title: new Text('Streaming'),
             trailing: new Icon(Icons.visibility),
           ),

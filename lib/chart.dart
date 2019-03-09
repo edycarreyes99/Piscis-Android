@@ -127,6 +127,7 @@ class _DocumentChartState extends State<DocumentChart> {
                         .snapshots(),
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
+                      // ignore: new_with_invalid_type_parameters
                       return LineChart<LinearSales>(
                         _generarDatos(snapshot.data),
                         animate: true,
